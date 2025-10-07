@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Clicks Agency is a leading digital marketing and web design agency that helps businesses grow their online presence.">
+    <title>Clicks Agency</title>
+    <link rel="icon" type="image/png" href="gallery/clicks-agency.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.css"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="theme.js" defer></script>
+</head>
+<body>
+
+    <div id="layout-container">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const layoutContainer = document.getElementById('layout-container');
+
+            // Function to load content
+            const loadContent = async (page) => {
+                try {
+                    const response = await fetch(page);
+                    const content = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(content, 'text/html');
+                    const pageContent = doc.querySelector('body').innerHTML;
+                    layoutContainer.innerHTML = pageContent;
+                } catch (error) {
+                    console.error('Error loading page:', error);
+                    layoutContainer.innerHTML = '<p>Error loading content.</p>';
+                }
+            };
+
+            // Load the initial page (e.g., index.html)
+            loadContent('index.html');
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdbassit/Coloris@latest/dist/coloris.min.js"></script>
+    <script src="main.js"></script>
+    <script src="animations.js"></script>
+</body>
+</html>
